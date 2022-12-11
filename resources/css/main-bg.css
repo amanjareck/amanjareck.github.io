@@ -1,0 +1,133 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background: #212121 !important;
+    color: #fafafa !important;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif !important;
+}
+
+.div_intro_container{
+    height: 100vh;
+    display: flex;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .div_intro_container .container{ 
+    height: 100vh;
+
+} */
+
+/* .div_intro_container .container{
+    margin-top: 50px !important;
+    border: 5px solid #3f3f3f;
+    padding-top: 25px;
+    padding-bottom: 25px;
+} */
+
+.intro_image_container{
+    position:relative;
+    min-width: 100%;
+    min-height: 100%;
+    /* border-radius: 300px; */
+}
+
+.intro_img{
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    right: 0;
+    left: 0;
+    background-image: url('../img/intro_port_2.JPG');
+    background-size: contain;
+    /* border-radius: 300px;
+    border: 8px solid #515151; */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.intro_name{
+    font-size: 72px;
+    line-height: 72px;
+    font-weight: bold;
+    position: relative;
+}
+
+.intro_name::after{
+    content:'Aman \A Chawla';
+    font-size: 78px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(250,250,250,0.05);
+    white-space: break-spaces;
+}
+
+.intro_profession{
+    position: relative;
+    color: #e1a34c;
+    font-size: 24px;
+}
+
+.intro_summary{
+    font-size: 20px;
+}
+
+.intro_skills span {
+    margin-left: 15px;
+}
+
+.intro_skills_title{
+    color: #e1a34c;
+}
+
+.intro_skills_img{
+    padding: 10px;
+    box-shadow: 5px 5px 5px #0d0d0d, -5px -2px 5px #3d3d3d;
+}
+
+.intro_skills span:nth-child(1){
+    margin-left: 0px;
+}
+
+.row.intro{
+    width: 100vw;
+}
+
+@media screen and (max-width: 768px) {
+    .intro_image_container{
+        min-width:350px;
+        min-height: 350px;
+    }
+
+    .intro_summary{
+        font-size: 18px;
+    }
+
+    .intro_profession{
+        font-size: 18px;
+    }
+
+    .intro_name{
+        font-size: 42px;
+        line-height: 42px;
+    }
+    
+    .intro_name::after{
+        font-size: 42px;
+        top: 10px;
+        left: 10px;
+    }
+
+    .intro_skills_img{
+        width: 50px !important;
+        padding: 3px;
+    }
+}

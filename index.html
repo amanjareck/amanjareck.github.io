@@ -1,259 +1,39 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/custom.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="./resources/css/main-bg.css">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<div id="landing-pane">
-			<canvas id="canvas"></canvas>
-			<div id="landing-content">
-				<h1>Aman Chawla</h1>
-				<h3>Full Stack Developer, Creative, Gizmo Freak</h3>
+		<div class="div_intro_container">
+			<div class="container">
+				<div class="row intro">
+					<div class="col-md-6 col-xs-12">
+						<div class="intro_image_container">
+							<div class="intro_img"></div>
+						</div>
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<div class="intro_container">
+							<p class="intro_profession">- Full Stack Developer</p>
+							<p class="intro_name">Aman<br/>Chawla</p>
+							<p class="intro_summary">I work somewhere between strategy, planning, innovation, and development. I love technology, web, architecting and analyzing data.</p>
+							<div class="row intro_key">
+								<div class="col intro_skills">
+									<p class="intro_skills_title">Skills</p>
+									<p>	
+										<span><img class="intro_skills_img" src="./resources/img/salesforce_skill.png" width="55"></span>
+										<span><img class="intro_skills_img" src="./resources/img/js_skill.png" width="55"></span>
+										<span><img class="intro_skills_img" src="./resources/img/react_skill.png" width="55"></span>
+									</p>
+								</div>
+							</div>
+						</div>						
+					</div>					
+				</div>
 			</div>
 		</div>
-		<script>
-			
-			/*var canvas;
-			canvas = document.getElementById("canvas");
-			canvas.width = window.innerWidth; //get current window's width
-			canvas.height = window.innerHeight; //get current window's height
-			var canvasW = canvas.width;
-			var canvasH = canvas.height;
-			*/
-			
-			/**
-			 * Generates random particles using canvas
-			 * 
-			 * @class Particles
-			 * @constructor
-			 */
-			function Particles(){
-			  //particle colors
-			  this.colors = [
-				'169,169,169',
-				'128,128,128',
-				'105,105,105',
-				'119,136,153',
-				'112,128,144'
-			  ]
-			  this.texts = [
-				'C#', 'ASP.NET', 'WPF(C#)',
-				'HTML5', 'CSS3', 'Python', 'NodeJS',
-				'Salesforce', 'Server Admin', 'Databases'
-			  ]
-			  this.fontStyles = [
-				'normal', 'italic', 'oblique'
-			  ]
-			  this.fontfamlies = [
-				'"Comic Sans MS", cursive, sans-serif',
-				'"Lucida Sans Unicode", "Lucida Grande", sans-serif',
-				'"Trebuchet MS", Helvetica, sans-serif',
-				'"Courier New", Courier, monospace',
-				'"Lucida Console", Monaco, monospace'
-			  ]
-			  //adds gradient to particles on true
-			  this.blurry = true;
-			  //adds white border
-			  this.border = false;
-			  //particle radius min/max
-			  this.minFontSize = 18; 
-			  this.maxFontSize = 24;
-			  this.minRadius = 10; 
-			  this.maxRadius = 16;
-			  //particle opacity min/max
-			  this.minOpacity = .01;
-			  this.maxOpacity = .3;
-			  //particle speed min/max
-			  this.minSpeed = .15;
-			  this.maxSpeed = .35;
-			  //frames per second 
-			  this.fps = 60;
-			  //number of particles
-			  this.numParticles = 20;
-			  //required canvas variables
-			  this.canvas = document.getElementById('canvas');
-			  this.ctx = this.canvas.getContext('2d');
-			}
-
-			/**
-			 * Initializes everything 1
-			 * @method init
-			 */
-			Particles.prototype.init = function(){
-			  this.render();
-			}
-
-			/**
-			 * generates random number between min and max values
-			 * @param  {number} min value
-			 * @param  {number} max malue
-			 * @return {number} random number between min and max
-			 * @method _rand
-			 */
-			Particles.prototype._rand = function(min, max){
-			  return Math.random() * (max - min) + min;
-			}
-
-			/**
-			 * Sets canvas size and updates values on resize
-			 * @method render
-			 */
-			Particles.prototype.render = function(){ 
-			  var self = this,
-				  wWidth = window.innerWidth;
-                  wHeight = window.innerHeight;
-				  /*wHeight = $('#landing-pane').height(),
-				  wWidth = $('#landing-pane').width();
-				  console.log(wWidth);*/
-			  
-			  canvas.style.width ='100%';
-			  canvas.style.height='100%';
-			  // ...then set the internal size to match
-			  self.canvas.width  = wWidth;
-			  self.canvas.height = wHeight;
-  
-			  /*self.canvas.width = wWidth;
-			  self.canvas.height = wHeight;*/
-			  
-			  this.createCircle();
-			  
-			  $(window).on('resize', self.render);
-			}
-
-			/**
-			 * Randomly creates particle attributes
-			 * @method createCircle
-			 */
-			Particles.prototype.createCircle = function(){
-			  var particle = [];
-
-			  for (var i = 0; i < this.numParticles; i++) {
-				var self = this,
-					color = self.colors[~~(self._rand(0, self.colors.length))];
-					text = self.texts[~~(self._rand(0, self.texts.length))];
-					fontStyle = self.fontStyles[~~(self._rand(0, self.fontStyles.length))];
-					fontFamily = self.fontfamlies[~~(self._rand(0, self.fontfamlies.length))]
-				
-				particle[i] = {
-				  fontSize  : self._rand(self.minFontSize, self.maxFontSize),
-				  xPos      : self._rand(0, canvas.width),
-				  yPos      : self._rand(0, canvas.height),
-				  xVelocity : self._rand(self.minSpeed, self.maxSpeed),
-				  yVelocity : self._rand(self.minSpeed, self.maxSpeed),
-				  color     : color,
-				  text		: text,
-				  fontStyle	: fontStyle,
-				  fontFamily: fontFamily
-				}
-				
-				//once values are determined, draw particle on canvas
-				self.draw(particle, i);
-			  }
-			  //...and once drawn, animate the particle
-			  self.animate(particle);
-			}
-
-			/**
-			 * Draws particles on canvas
-			 * @param  {array} Particle array from createCircle method
-			 * @param  {number} i value from createCircle method
-			 * @method draw
-			 */
-			Particles.prototype.draw = function(particle, i){
-			  var self = this,
-				  ctx = self.ctx;
-			  
-			  if (self.blurry === true ) {
-				//creates gradient if blurry === true
-				/*var grd = ctx.createRadialGradient(particle[i].xPos, particle[i].yPos, particle[i].radius, particle[i].xPos, particle[i].yPos, particle[i].radius/1.25);
-				
-				grd.addColorStop(1.000, particle[i].color);
-				grd.addColorStop(0.000, 'rgba(34, 34, 34, 0)');*/
-				ctx.fillStyle = 'rgb(' + particle[i].color + ')';
-			  } else {
-				//otherwise sets to solid color w/ opacity value
-				ctx.fillStyle = 'rgb(' + particle[i].color + ')';
-			  }
-			  
-			  /*if (self.border === true) {
-				ctx.strokeStyle = '#fff';
-				ctx.stroke();
-			  }*/
-			  
-			  //ctx.beginPath();
-			  
-			  ctx.font = particle[i].fontStyle + ' ' + particle[i].fontSize + 'px ' + particle[i].fontFamily;
-			  ctx.fillText(particle[i].text, particle[i].xPos, particle[i].yPos); 
-			  //ctx.arc(particle[i].xPos, particle[i].yPos, particle[i].radius, 0, 2 * Math.PI, false);
-			  //ctx.fill();
-			}
-
-			/**
-			 * Animates particles 
-			 * @param  {array} particle value from createCircle & draw methods
-			 * @method animate
-			 */
-			Particles.prototype.animate = function(particle){
-			  var self = this,
-					  ctx = self.ctx;
-			  
-			  setInterval(function(){
-				//clears canvas
-				self.clearCanvas();
-				//then redraws particles in new positions based on velocity
-				for (var i = 0; i < self.numParticles; i++) {
-				  particle[i].xPos += particle[i].xVelocity;
-				  particle[i].yPos -= particle[i].yVelocity;
-				 
-				  //if particle goes off screen call reset method to place it offscreen to the left/bottom
-				  //particle[i].xPos > self.canvas.width + particle[i].fontSize || particle[i].yPos > self.canvas.height + particle[i].fontSize
-				  if (particle[i].xPos > self.canvas.width + particle[i].fontSize || particle[i].yPos > self.canvas.height + particle[i].fontSize) {
-				  
-					self.resetParticle(particle, i);
-				  } else {
-					self.draw(particle, i);
-				  }
-				}  
-			  }, 1000/self.fps); 
-			}
-
-			/**
-			 * Resets position of particle when it goes off screen
-			 * @param  {array} particle value from createCircle & draw methods
-			 * @param  {number} i value from createCircle method
-			 * @method resetParticle
-			 */
-			Particles.prototype.resetParticle = function(particle, i){
-			  var self = this;
-			  
-			  var random = self._rand(0, 1);
-			  
-			  if (random > .5) { 
-				// 50% chance particle comes from left side of window...
-				particle[i].xPos = -particle[i].fontSize;
-				particle[i].yPos = self._rand(0, canvas.height);
-			  } else {
-				//... or bottom of window
-				particle[i].xPos = self._rand(0, canvas.width);
-				particle[i].yPos = canvas.height + particle[i].fontSize;   
-			  }
-			  //redraw particle with new values
-			  self.draw(particle, i);
-			}
-
-			/**
-			 * Clears canvas between animation frames
-			 * @method clearCanvas
-			 */
-			Particles.prototype.clearCanvas = function(){
-			  this.ctx.clearRect(0, 0, canvas.width, canvas.height);
-			}
-
-			 
-			// go go go!
-			var particle = new Particles().init();
-			
-		</script>
 	</body>
 </html>
